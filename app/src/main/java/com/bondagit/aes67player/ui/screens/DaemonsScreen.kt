@@ -312,7 +312,7 @@ fun DaemonsList(
             modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_small))
         )
     }
-    LazyColumn() {
+    LazyColumn {
         items(daemons.size) {
             DaemonItem(
                 daemons[it],
@@ -337,7 +337,7 @@ fun DaemonAlertDialog(
     }, title = {
         Text(text = dialogTitle)
     }, text = {
-        Column() {
+        Column {
             Text(text = dialogText, textAlign = TextAlign.Center)
         }
     }, onDismissRequest = {
@@ -373,8 +373,14 @@ fun DaemonsLoadScreen(
         modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DaemonsList(daemonUrls, {
-            daemonUrls += it
-            model.saveDaemons(daemonUrls)
+            var url = it
+            while (url.endsWith("/")) {
+                url = url.substring(0, url.length - 1)
+            }
+            if (!daemonUrls.contains(url)) {
+                daemonUrls += url
+                model.saveDaemons(daemonUrls)
+            }
         }, {
             daemonToDelete = it
         }, onDaemonSelected, onReloadClicked

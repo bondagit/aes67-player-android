@@ -12,6 +12,7 @@
     <string name="retry">Retry</string>
     <string name="loading">Loading</string>
     <string name="status">Status</string>
+    <string name="channel">channel</string>
     <string name="channels">channels</string>
     <string name="connecting">Connecting …</string>
     <string name="dismiss">Dismiss</string>
@@ -23,14 +24,16 @@
     <string name="no_streamer_channels">Invalid streamer channels</string>
     <string name="failed_to_fetch_info">Failed to fetch streamer info</string>
     <string name="unsupported_audio_format">Audio format not supported</string>
-    <string name="unsupported_channels">Channels count not supported</string>
+    <string name="unsupported_channels">Channels not supported</string>
     <string name="audio_init_failed">Cannot initialize audio</string>
     <string name="player_suspended">Player suspended</string>
     <string name="player_stopped">Player stopped</string>
+    <string name="player_error">Player internal error</string>
     <string name="audio_fetch_failed">Cannot fetch audio</string>
     <string name="reached_max_samples">Playback limit reached</string>
     <string name="wrong_daemon_version">Incompatible daemon version</string>
     <string name="network_too_slow">Network is too slow</string>
+    <string name="player_out_of_sync">Player is out of sync</string>
     <string name="rtp_status">RTP Status</string>
     <string name="rtp_errors">RTP Errors</string>
     <string name="channels_map">Channels map</string>

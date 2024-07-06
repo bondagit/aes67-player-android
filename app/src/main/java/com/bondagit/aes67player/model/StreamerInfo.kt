@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 /*
 "status": 0,
-"file_duration_sec": 2,
+"file_duration": 2,
 "files_num": 4,
 "start_file_id": 3,
 "current_file_id": 3,
@@ -21,7 +21,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class StreamerInfo(
     val status: Int,
-    @SerialName(value = "file_duration_sec") val fileDurationSec: Int,
+    @SerialName(value = "file_duration") val fileDuration: Int,
     @SerialName(value = "files_num") val filesNum: Int,
     @SerialName(value = "start_file_id") val startFileId: Int,
     @SerialName(value = "current_file_id") val currentFileId: Int,

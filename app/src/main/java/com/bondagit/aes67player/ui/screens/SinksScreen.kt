@@ -76,7 +76,7 @@ fun PlayerAlertDialog(
     icon: ImageVector,
 ) {
     AlertDialog(icon = {
-        Icon(icon, contentDescription = "playback end")
+        Icon(icon, contentDescription = "playback finished")
     }, title = {
         Text(text = dialogTitle)
     }, text = {
@@ -113,15 +113,18 @@ fun PlayStopButton(
     val isSinkPlaying: Boolean =
         playerUiState.playingUrl == baseUrl && playerUiState.playingSink == sink.id
     val isBuffering: Boolean = isSinkPlaying && !playerUiState.isPlayStarted
+    val isPlayStarted: Boolean = isSinkPlaying && playerUiState.isPlayStarted
 
     IconButton(
         onClick = {
             if (!isPlaying) player.play(baseUrl, sink.id)
             else player.stop()
-        }, modifier = Modifier, enabled = streamerInfo.status == 0 && (!isPlaying || isSinkPlaying)
+        },
+        modifier = Modifier,
+        enabled = streamerInfo.status == 0 && streamerInfo.channels <= 6 && (!isPlaying || isPlayStarted)
     ) {
         Icon(
-            imageVector = if (streamerInfo.status != 0) Icons.Filled.PlayDisabled
+            imageVector = if (streamerInfo.status != 0 || streamerInfo.channels > 6) Icons.Filled.PlayDisabled
             else if (!isPlaying) Icons.Filled.PlayCircle
             else if (!isSinkPlaying) Icons.Filled.PlayDisabled
             else if (isBuffering) Icons.Filled.Downloading
@@ -146,9 +149,9 @@ fun SinkName(
             overflow = TextOverflow.Ellipsis
         )
 
-        if (streamerInfo.status != 0) {
+        if (streamerInfo.status != 0 || sink.map.size > 6) {
             Text(
-                text = streamerInfo.statusText(),
+                text = if (streamerInfo.status != 0) streamerInfo.statusText() else stringResource(R.string.unsupported_channels),
                 style = MaterialTheme.typography.bodyLarge,
                 color = Color.Red,
                 modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_small)),
@@ -156,8 +159,9 @@ fun SinkName(
                 overflow = TextOverflow.Ellipsis
             )
         } else {
+            val channels = if (sink.map.size > 1) stringResource(R.string.channels) else stringResource(R.string.channel)
             Text(
-                text = sink.map.size.toString() + " " + stringResource(R.string.channels),
+                text = sink.map.size.toString() + " " + channels,
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_small)),
                 maxLines = 1,
@@ -371,7 +375,7 @@ fun SinksList(
 ) {
     SinksDaemonInfo(config, sinks)
     SinksReloadButton(getSinks)
-    LazyColumn() {
+    LazyColumn {
         items(sinks.size) {
             SinkItem(
                 baseUrl,
@@ -464,7 +468,7 @@ fun SinksLoadScreen(
                 if (playerUiState.isPlayError) {
                     PlayerAlertDialog(
                         onDismissRequest = { model.playerReset(); model.getSinks(); },
-                        dialogTitle = "Player End",
+                        dialogTitle = "Player",
                         dialogText = playerUiState.playError,
                         icon = Icons.Default.Error
                     )

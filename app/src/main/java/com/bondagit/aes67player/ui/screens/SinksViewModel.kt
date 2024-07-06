@@ -36,8 +36,8 @@ sealed interface SinksUiState {
         val streamerInfo: Map<Int, StreamerInfo>
     ) : SinksUiState
 
-    object Error : SinksUiState
-    object Loading : SinksUiState
+    data object Error : SinksUiState
+    data object Loading : SinksUiState
 }
 
 /**
@@ -52,7 +52,7 @@ data class PlayerUIState(
 )
 
 
-class SinksViewModel(private val repository: SinksRepository, private val player: Player) : ViewModel() {
+class SinksViewModel(private val repository: SinksRepository, player: Player) : ViewModel() {
     /** The mutable State that stores the status of the Sinks */
     var sinksUiState: SinksUiState by mutableStateOf(SinksUiState.Loading)
         private set
@@ -62,15 +62,27 @@ class SinksViewModel(private val repository: SinksRepository, private val player
     val playerUiState: StateFlow<PlayerUIState> = _playerUiState.asStateFlow()
 
     fun playerReset() {
-        _playerUiState.value = PlayerUIState("", -1, false, false, "")
+        _playerUiState.value = PlayerUIState("", -1,
+            isPlayStarted = false,
+            isPlayError = false,
+            playError = ""
+        )
     }
 
     private fun onPlayBuffering(url: String, id: Int) {
-        _playerUiState.value = PlayerUIState(url, id, false, false, "")
+        _playerUiState.value = PlayerUIState(url, id,
+            isPlayStarted = false,
+            isPlayError = false,
+            playError = ""
+        )
     }
 
     private fun onPlayStarted(url: String, id: Int) {
-        _playerUiState.value = PlayerUIState(url, id, true, false, "")
+        _playerUiState.value = PlayerUIState(url, id,
+            isPlayStarted = true,
+            isPlayError = false,
+            playError = ""
+        )
     }
 
     private fun onPlayEnd(url: String, id: Int, isError: Boolean, message: String) {

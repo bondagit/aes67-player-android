@@ -3,7 +3,6 @@
 //
 package com.bondagit.aes67player.ui
 
-import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -19,13 +18,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.bondagit.aes67player.Aes67PlayerApplication
-import com.bondagit.aes67player.R
 import com.bondagit.aes67player.ui.screens.DaemonsLoadScreen
 import com.bondagit.aes67player.ui.screens.SinksLoadScreen
 
 
-enum class Aes67PlayerScreen(@StringRes val title: Int) {
-    Daemons(title = R.string.daemons), Sinks(title = R.string.sinks),
+enum class Aes67PlayerScreen {
+    Daemons, Sinks,
 }
 
 
@@ -34,7 +32,7 @@ enum class Aes67PlayerScreen(@StringRes val title: Int) {
 fun Aes67PlayerApp(navController: NavHostController = rememberNavController()) {
     // Get current back stack entry
     val backStackEntry by navController.currentBackStackEntryAsState()
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     val currentScreen = Aes67PlayerScreen.valueOf(
         backStackEntry?.destination?.route ?: Aes67PlayerScreen.Daemons.name
     )

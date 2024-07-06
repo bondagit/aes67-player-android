@@ -26,10 +26,10 @@ android {
 
     defaultConfig {
         applicationId = "com.bondagit.aes67player"
-        minSdk = 29
+        minSdk = 28
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 4
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -44,6 +44,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            isDebuggable = false
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
