@@ -1,6 +1,6 @@
 # AES67 Player
 
-The AES67 Player application is an Android application that can be used to play to your AES67 streams.
+The AES67 Player application is an application used to play AES67 streams to your Android devices.
 
 # Introduction
 
@@ -8,7 +8,7 @@ Play your AES67 audio streams directly on your Android devices for testing, prev
 
 The AES67 Linux Daemon is an open source Linux application and you can find it at: [AES67 Linux Daemon](https://github.com/bondagit/aes67-linux-daemon)
 
-Starting from version 2.0 the daemon is now able to capture and compress, using the AAC codec, AES67 sinks and serve them via HTTP Live Streaming supporting scalable audio distribution.
+Starting from version 2.0 the daemon is able to capture and compress, using the AAC codec, AES67 sinks and serve them via HTTP Live Streaming supporting scalable audio distribution.
 
 The Player is able to playback the live streams up to 6 channels each. 
 
@@ -23,8 +23,7 @@ AES67 player is licensed under [GNU GPL](https://www.gnu.org/licenses/gpl-3.0.en
 
 You can use Android Studio to build and install the application on your device.
 
-You can also download and install a prebuilt APK for the lastest release from:
-https://github.com/bondagit/aes67-player-android/releases/latest/download/app-release.apk
+You can also download and install the latest prebuilt release APK at: [latest release APK](https://github.com/bondagit/aes67-player-android/releases/latest/download/app-release.apk)
 
 
 # Setup instruction
