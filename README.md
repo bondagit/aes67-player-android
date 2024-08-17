@@ -2,6 +2,10 @@
 
 Play your AES67 audio streams directly on your Android devices by using the AES67 Linux Daemon.
 
+Use Android Studio to build and install the application on your device or download the APK from the following link:
+
+The AES67 Player for Android application is licensed under [GNU GPL](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
 The AES67 Linux Daemon is an open source Linux application and you can find  it at: https://github.com/bondagit/aes67-linux-daemon
 
 1. Install and configure the AES67 Linux daemon on a Linux host and attach it to your AES67 LAN.
