@@ -1,6 +1,6 @@
 # AES67 Player
 
-The AES67 Player is an application used to play AES67 audio streams to your Android devices.
+The AES67 Player is an application used to play AES67 audio streams on Android devices.
 
 # Introduction
 
